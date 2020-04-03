@@ -2,7 +2,7 @@
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const authConfig = require("../config/auth");
+const generateToken = require("../utils/generateToken");
 
 module.exports = {
   async create(req, res) {
@@ -15,12 +15,14 @@ module.exports = {
       const user = await User.create(req.body);
       user.password = undefined;
       return res.json({
-        user
+        user,
+        token: generateToken({ id: user._id })
       });
     } catch (err) {
       return res.status(400).send({ error: "Registration failed" });
     }
   },
+
   async index(request, response) {
     const users = await User.find();
     return response.json({ users });
@@ -38,11 +40,8 @@ module.exports = {
         return res.status(400).send({ error: "Invalid password" });
 
       user.password = undefined;
-      const token = jwt.sign({ id: user._id }, authConfig.secrect, {
-        expiresIn: 86400
-      });
 
-      return res.json({ user, token });
+      return res.json({ user, token: generateToken({ id: user._id }) });
     } catch (error) {
       return res.status(400).send("Authentication failed " + error);
     }
