@@ -1,37 +1,24 @@
-const connection = require("../database/connection");
+// const connection = require("../database/connection");
+const User = require("../models/user");
 const generateId = require("../utils/generateId");
 const jwt = require("jsonwebtoken");
 
 module.exports = {
-  async create(request, response) {
-    const {
-      name,
-      email,
-      password,
-      type,
-      cpf,
-      company,
-      position
-    } = request.body;
+  async create(req, res) {
+    const { email } = req.body;
 
-    const id = generateId();
-    const isActive = 0;
-
-    await connection("user").insert({
-      id,
-      name,
-      email,
-      password,
-      type,
-      cpf,
-      company,
-      position,
-      isActive
-    });
-
-    return response.json({
-      id
-    });
+    try {
+      if (await User.findOne({ email })) {
+        return res.status(400).send({ error: "User already exists" });
+      }
+      const user = await User.create(req.body);
+      user.password = undefined;
+      return res.json({
+        user
+      });
+    } catch (err) {
+      return res.status(400).send({ error: "Registration failed" });
+    }
   },
   async index(request, response) {
     const users = await connection("user").select("*");
