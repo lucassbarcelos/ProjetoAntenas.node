@@ -1,6 +1,5 @@
 // const connection = require("../database/connection");
 const User = require("../models/user");
-const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const generateToken = require("../utils/generateToken");
 
@@ -13,6 +12,7 @@ module.exports = {
         return res.status(400).send({ error: "User already exists" });
       }
       const user = await User.create(req.body);
+      console.log(user);
       user.password = undefined;
       return res.json({
         user,

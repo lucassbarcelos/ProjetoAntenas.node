@@ -10,6 +10,4 @@ routes.get("/select", UserService.index);
 
 routes.post("/logon", UserService.logon);
 
-routes.get("/auth", UserService.teste);
-
 module.exports = routes;

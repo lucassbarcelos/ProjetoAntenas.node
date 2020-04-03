@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const cadiController = require("./controllers/cadiController");
+const projectController = require("./controllers/ProjectController");
 const userController = require("./controllers/userController");
 const bodyParser = require("body-parser");
 
@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(express.json());
 
-app.use(cadiController);
+app.use(projectController);
 app.use(userController);
 // app.use(routes);
 // app.use(errors());
