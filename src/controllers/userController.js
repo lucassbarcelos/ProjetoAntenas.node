@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const routes = express.Router();
 
-routes.post("/create", UserService.create);
+routes.post("/register", UserService.create);
 
 routes.get("/select", UserService.index);
 

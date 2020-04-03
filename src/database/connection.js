@@ -1,6 +1,10 @@
-const knex = require("knex");
-const config = require("../../knexfile");
+const mongoose = require("mongoose");
 
-const connection = knex(config.development);
+mongoose.connect("mongodb://127.0.0.1:27017/app", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true
+});
+mongoose.Promise = global.Promise;
 
-module.exports = connection;
+module.exports = mongoose;
