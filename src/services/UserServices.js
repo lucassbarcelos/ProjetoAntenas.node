@@ -1,7 +1,8 @@
 // const connection = require("../database/connection");
 const User = require("../models/user");
-const generateId = require("../utils/generateId");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const authConfig = require("../config/auth");
 
 module.exports = {
   async create(req, res) {
@@ -21,15 +22,30 @@ module.exports = {
     }
   },
   async index(request, response) {
-    const users = await connection("user").select("*");
+    const users = await User.find();
     return response.json({ users });
   },
 
-  async logon(request, response) {
-    const { email, password } = request.body;
+  async logon(req, res) {
+    const { email, password } = req.body;
 
-    const token = jwt.sign(password, "teste");
-    return response.json({ token });
+    try {
+      const user = await User.findOne({ email }).select("+password");
+
+      if (!user) return res.status(400).send({ error: "User not found" });
+
+      if (!(await bcrypt.compare(password, user.password)))
+        return res.status(400).send({ error: "Invalid password" });
+
+      user.password = undefined;
+      const token = jwt.sign({ id: user._id }, authConfig.secrect, {
+        expiresIn: 86400
+      });
+
+      return res.json({ user, token });
+    } catch (error) {
+      return res.status(400).send("Authentication failed " + error);
+    }
   },
 
   async teste(request, response) {
