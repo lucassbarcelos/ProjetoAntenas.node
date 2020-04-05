@@ -11,8 +11,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(express.json());
 
-app.use(projectController);
-app.use(userController);
+// app.use(projectController)(app);
+// app.use(userController)(app);
+
+require("./controllers/ProjectController")(app);
+require("./controllers/userController")(app);
 // app.use(routes);
 // app.use(errors());
 

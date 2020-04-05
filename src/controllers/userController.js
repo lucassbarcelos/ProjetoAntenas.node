@@ -1,6 +1,5 @@
 const express = require("express");
 const UserService = require("../services/UserServices");
-const jwt = require("jsonwebtoken");
 
 const routes = express.Router();
 
@@ -10,4 +9,4 @@ routes.get("/select", UserService.index);
 
 routes.post("/logon", UserService.logon);
 
-module.exports = routes;
+module.exports = app => app.use("/auth", routes);

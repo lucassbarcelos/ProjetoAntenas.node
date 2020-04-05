@@ -1,6 +1,10 @@
 const express = require("express");
+const auth = require("../middleware/auth");
+const ProjectServices = require("../services/ProjectServices");
+
 const routes = express.Router();
+routes.use(auth);
 
-routes.get("/teste");
+routes.post("/new", ProjectServices.create);
 
-module.exports = routes;
+module.exports = app => app.use("/project", routes);

@@ -27,7 +27,7 @@ const ProjectSchema = new mongoose.Schema({
     type: Object
   },
   delivery: Array,
-  studenst: Array,
+  students: Array,
   cadiOwner: String,
   professorOwner: String,
   productOwner: String
