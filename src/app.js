@@ -9,12 +9,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(express.json());
 
-// app.use(projectController)(app);
-// app.use(userController)(app);
-
-require("./app/controllers/ProjectController")(app);
-require("./app/controllers/userController")(app);
-// app.use(routes);
-// app.use(errors());
+require("./app/controllers/index")(app);
 
 module.exports = app;
