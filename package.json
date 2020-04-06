@@ -17,9 +17,11 @@
     "cors": "^2.8.5",
     "cross-env": "^7.0.2",
     "express": "^4.17.1",
+    "fs": "0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.20.13",
     "mongoose": "^5.9.7",
+    "path": "^0.12.7",
     "sqlite3": "^4.1.1"
   },
   "devDependencies": {
