@@ -5,7 +5,6 @@ module.exports = {
     const newProject = req.body;
 
     try {
-      console.log(newProject);
       const project = await projectModel.create(newProject);
 
       res.send({
@@ -15,6 +14,19 @@ module.exports = {
       return res
         .status(400)
         .send("Project dont be created, please try again" + error);
+    }
+  },
+  async select(req, res) {
+    try {
+      const projects = await projectModel.find();
+      if (!projects)
+        return res.status(401).send({ error: "No projects found" });
+
+      res.send(projects);
+    } catch (error) {
+      res
+        .status(400)
+        .send({ error: "Failed to get projects, please try again" });
     }
   }
 };

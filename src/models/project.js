@@ -33,6 +33,6 @@ const ProjectSchema = new mongoose.Schema({
   productOwner: String
 });
 
-const Project = mongoose.model("Project", ProjectSchema);
+const Project = mongoose.model("project", ProjectSchema);
 
 module.exports = Project;
