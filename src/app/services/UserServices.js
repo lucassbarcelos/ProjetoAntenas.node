@@ -12,11 +12,11 @@ module.exports = {
         return res.status(400).send({ error: "User already exists" });
       }
       const user = await User.create(req.body);
-      console.log(user);
+
       user.password = undefined;
       return res.json({
         user,
-        token: generateToken({ id: user._id })
+        token: generateToken({ id: user._id }),
       });
     } catch (err) {
       return res.status(400).send({ error: "Registration failed" });
@@ -53,10 +53,10 @@ module.exports = {
     const res = jwt.decode(token, "teste");
     if (!res) {
       return response.status(401).json({
-        error: "Falha na autenticação no token"
+        error: "Falha na autenticação no token",
       });
     }
 
     return response.json({ res });
-  }
+  },
 };
