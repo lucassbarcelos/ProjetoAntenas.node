@@ -3,11 +3,11 @@ const mongoose = require("../database/connection");
 const ProjectSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true
+    required: true,
   },
   quickDescription: {
     type: String,
-    required: true
+    required: true,
   },
   fullDescription: String,
   techDescription: String,
@@ -19,18 +19,18 @@ const ProjectSchema = new mongoose.Schema({
     time: String,
     place: String,
     possibleDate: Array,
-    type: Object
+    type: Object,
   },
   state: {
     aproved: Boolean,
     reason: String,
-    type: Object
+    type: Object,
   },
   delivery: Array,
   students: Array,
   cadiOwner: String,
   professorOwner: String,
-  productOwner: String
+  productOwner: String,
 });
 
 const Project = mongoose.model("project", ProjectSchema);
