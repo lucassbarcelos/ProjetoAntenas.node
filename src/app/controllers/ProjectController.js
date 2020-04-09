@@ -9,4 +9,6 @@ routes.post("/new", ProjectServices.create);
 
 routes.get("/all", ProjectServices.select);
 
-module.exports = app => app.use("/project", routes);
+routes.post("/update", ProjectServices.update);
+
+module.exports = (app) => app.use("/project", routes);
