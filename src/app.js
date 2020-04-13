@@ -41,10 +41,32 @@ const schema = new GraphQLSchema({
   query: new GraphQLObjectType({
     name: "Query",
     fields: {
-      people: {
+      user: {
         type: GraphQLList(UserType),
         resolve: (root, args, context, info) => {
           return UserModel.find().exec();
+        },
+      },
+    },
+  }),
+  mutation: new GraphQLObjectType({
+    name: "Mutation",
+    fields: {
+      user: {
+        type: UserType,
+        args: {
+          name: { type: GraphQLNonNull(GraphQLString) },
+          email: { type: GraphQLNonNull(GraphQLString) },
+          password: { type: GraphQLNonNull(GraphQLString) },
+          type: { type: GraphQLNonNull(GraphQLInt) },
+          isActive: { type: GraphQLNonNull(GraphQLBoolean) },
+          company: { type: GraphQLNonNull(GraphQLString) },
+          cpf: { type: GraphQLNonNull(GraphQLInt) },
+          position: { type: GraphQLNonNull(GraphQLInt) },
+        },
+        resolve: (root, args, context, info) => {
+          var user = new UserModel(args);
+          return user.save();
         },
       },
     },
