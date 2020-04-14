@@ -13,7 +13,7 @@ const ProjectSchema = new mongoose.Schema({
   techDescription: String,
   linkOne: String,
   linkTwo: String,
-  fase: Number,
+  step: Number,
   reunion: {
     data: String,
     time: String,

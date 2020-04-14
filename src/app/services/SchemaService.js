@@ -5,10 +5,10 @@ const {
   GraphQLList,
   GraphQLNonNull,
   GraphQLInt,
+  GraphQLInputObjectType,
 } = require("graphql");
 const userEnum = require("../utils/userEnum");
-const mongo = require("../../database/connection");
-const { ProjectType, UserType } = require("../../graphql/types");
+const { ProjectType, UserType, StateInput } = require("../../graphql/types");
 const User = require("../../models/user");
 const Project = require("../../models/project");
 
@@ -78,50 +78,29 @@ const Mutation = new GraphQLObjectType({
         fullDescription: {
           type: new GraphQLNonNull(GraphQLString),
         },
-        link: {
+        productOwner: {
           type: new GraphQLNonNull(GraphQLString),
         },
-        creator: {
+        linkOne: {
           type: new GraphQLNonNull(GraphQLString),
         },
-        needPairs: {
+        state: { type: StateInput },
+        step: {
           type: new GraphQLNonNull(GraphQLInt),
         },
-        // pair: {
-        //   type: new GraphQLList(PairType),
-        // },
-        // imgPath: {
-        //   type: new GraphQLList(ImgPathType),
-        // },
       },
       resolve(parent, args) {
         let project = new Project({
           title: args.title,
           quickDescription: args.quickDescription,
           fullDescription: args.fullDescription,
-          link: args.link,
-          creator: args.creator,
-          needPairs: args.needPairs,
-          // pair: args.pair,
-          // imgPath: args.imgPath,
+          productOwner: args.productOwner,
+          linkOne: args.linkOne,
+          state: args.state,
+          step: args.step,
         });
         try {
           project.save();
-          let log = new Log({
-            user: project.creator,
-            projectId: project._id,
-            actionEnum: 1,
-          });
-          log.save();
-          User.find({ email: project.creator })
-            .exec()
-            .then((docs) => {
-              console.log(docs[0]._id);
-              return docs._id;
-            });
-          User.findOne({ email: project.creator }, (err, doc) => {
-            console.log(doc._id);
-          });
           return project;
         } catch (error) {
           return Response.status(400).send({

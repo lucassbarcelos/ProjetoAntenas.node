@@ -5,6 +5,7 @@ const {
   GraphQLID,
   GraphQLList,
   GraphQLInt,
+  GraphQLInputObjectType,
 } = require("graphql");
 
 const ReunionType = new GraphQLObjectType({
@@ -23,6 +24,13 @@ const StateType = new GraphQLObjectType({
     aproved: { type: GraphQLBoolean },
     reason: { type: GraphQLString },
   },
+});
+const StateInput = new GraphQLInputObjectType({
+  name: "StateInput",
+  fields: () => ({
+    aproved: { type: GraphQLBoolean },
+    reason: { type: GraphQLString },
+  }),
 });
 
 const UserType = new GraphQLObjectType({
@@ -50,7 +58,7 @@ const ProjectType = new GraphQLObjectType({
     techDescription: { type: GraphQLString },
     linkOne: { type: GraphQLString },
     linkTwo: { type: GraphQLString },
-    fase: { type: GraphQLString },
+    step: { type: GraphQLString },
     reunion: { type: GraphQLList(ReunionType) },
     state: { type: GraphQLList(StateType) },
     delivery: { type: GraphQLList(GraphQLString) },
@@ -61,7 +69,7 @@ const ProjectType = new GraphQLObjectType({
   },
 });
 
-module.exports = { UserType, ProjectType };
+module.exports = { UserType, ProjectType, StateType, StateInput };
 
 // const schema = new GraphQLSchema({
 //     query: new GraphQLObjectType({
