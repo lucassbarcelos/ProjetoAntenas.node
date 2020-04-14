@@ -29,7 +29,7 @@ const ProjectSchema = new mongoose.Schema({
   delivery: Array,
   students: Array,
   cadiOwner: String,
-  professorOwner: String,
+  teacherOwner: String,
   productOwner: String,
 });
 

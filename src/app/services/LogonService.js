@@ -23,11 +23,6 @@ module.exports = {
     }
   },
 
-  async index(request, response) {
-    const users = await User.find();
-    return response.json({ users });
-  },
-
   async logon(req, res) {
     const { email, password } = req.body;
 
@@ -45,18 +40,5 @@ module.exports = {
     } catch (error) {
       return res.status(400).send("Authentication failed " + error);
     }
-  },
-
-  async teste(request, response) {
-    const { token } = request.headers;
-
-    const res = jwt.decode(token, "teste");
-    if (!res) {
-      return response.status(401).json({
-        error: "Falha na autenticação no token",
-      });
-    }
-
-    return response.json({ res });
   },
 };
