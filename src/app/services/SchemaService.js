@@ -75,9 +75,6 @@ const Mutation = new GraphQLObjectType({
         quickDescription: {
           type: new GraphQLNonNull(GraphQLString),
         },
-        fullDescription: {
-          type: new GraphQLNonNull(GraphQLString),
-        },
         productOwner: {
           type: new GraphQLNonNull(GraphQLString),
         },
