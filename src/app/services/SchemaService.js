@@ -7,7 +7,6 @@ const {
   GraphQLInt,
   GraphQLInputObjectType,
 } = require("graphql");
-const userEnum = require("../utils/userEnum");
 const {
   ProjectType,
   UserType,
@@ -18,7 +17,8 @@ const User = require("../../models/user");
 const Project = require("../../models/project");
 
 const RootQuery = new GraphQLObjectType({
-  name: "RootQueryType",
+  name: "Querys",
+  description: "Here are all queries you can do using GraphQL",
   fields: {
     user: {
       type: UserType,
@@ -69,8 +69,9 @@ const RootQuery = new GraphQLObjectType({
 });
 
 const Mutation = new GraphQLObjectType({
-  name: "Mutation",
-  description: "Mutations about projecs",
+  name: "Mutations",
+  description:
+    "Here are how to use and what are expected for do projects mutations",
   fields: {
     addProject: {
       type: ProjectType,
@@ -144,6 +145,8 @@ const Mutation = new GraphQLObjectType({
   },
 });
 module.exports = new GraphQLSchema({
+  description:
+    "Here are all the queries and mutations you can do to get what you need",
   query: RootQuery,
   mutation: Mutation,
 });
