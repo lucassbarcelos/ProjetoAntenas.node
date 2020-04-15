@@ -70,6 +70,7 @@ const RootQuery = new GraphQLObjectType({
 
 const Mutation = new GraphQLObjectType({
   name: "Mutation",
+  description: "Mutations about projecs",
   fields: {
     addProject: {
       type: ProjectType,
@@ -113,6 +114,7 @@ const Mutation = new GraphQLObjectType({
     },
     updateProject: {
       type: ProjectType,
+      description: "you can update everything in project",
       args: {
         _id: { type: new GraphQLNonNull(GraphQLString) },
         title: { type: GraphQLString },
@@ -131,7 +133,12 @@ const Mutation = new GraphQLObjectType({
         productOwner: { type: GraphQLString },
       },
       resolve(parent, args) {
-        return Project.updateOne({ _id: args._id }, args);
+        const res = Project.updateOne({ _id: args._id }, args, (err, doc) => {
+          return doc;
+        });
+        return Project.findOne({ _id: args._id }, (erro, doc) => {
+          return doc;
+        });
       },
     },
   },
