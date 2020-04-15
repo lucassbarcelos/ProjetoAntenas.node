@@ -17,6 +17,15 @@ const ReunionType = new GraphQLObjectType({
     possibleDate: { type: GraphQLList(GraphQLString) },
   },
 });
+const ReunionInput = new GraphQLInputObjectType({
+  name: "ReunionInput",
+  fields: {
+    date: { type: GraphQLString },
+    time: { type: GraphQLString },
+    place: { type: GraphQLString },
+    possibleDate: { type: GraphQLList(GraphQLString) },
+  },
+});
 
 const StateType = new GraphQLObjectType({
   name: "State",
@@ -69,7 +78,7 @@ const ProjectType = new GraphQLObjectType({
   },
 });
 
-module.exports = { UserType, ProjectType, StateType, StateInput };
+module.exports = { UserType, ProjectType, StateType, StateInput, ReunionInput };
 
 // const schema = new GraphQLSchema({
 //     query: new GraphQLObjectType({

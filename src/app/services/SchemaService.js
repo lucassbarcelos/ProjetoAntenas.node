@@ -8,7 +8,12 @@ const {
   GraphQLInputObjectType,
 } = require("graphql");
 const userEnum = require("../utils/userEnum");
-const { ProjectType, UserType, StateInput } = require("../../graphql/types");
+const {
+  ProjectType,
+  UserType,
+  StateInput,
+  ReunionInput,
+} = require("../../graphql/types");
 const User = require("../../models/user");
 const Project = require("../../models/project");
 
@@ -106,25 +111,27 @@ const Mutation = new GraphQLObjectType({
         }
       },
     },
-    mathProject: {
+    updateProject: {
       type: ProjectType,
       args: {
         _id: { type: new GraphQLNonNull(GraphQLString) },
-        email: { type: new GraphQLNonNull(GraphQLString) },
+        title: { type: GraphQLString },
+        quickDescription: { type: GraphQLString },
+        fullDescription: { type: GraphQLString },
+        techDescription: { type: GraphQLString },
+        linkOne: { type: GraphQLString },
+        linkTwo: { type: GraphQLString },
+        step: { type: GraphQLString },
+        reunion: { type: GraphQLList(ReunionInput) },
+        state: { type: GraphQLList(StateInput) },
+        delivery: { type: GraphQLList(GraphQLString) },
+        students: { type: GraphQLList(GraphQLString) },
+        cadiOwner: { type: GraphQLString },
+        teacherOwner: { type: GraphQLString },
+        productOwner: { type: GraphQLString },
       },
       resolve(parent, args) {
-        User.findOne({ email: args.email }, (err, doc) => {
-          Project.findOneAndUpdate(
-            { _id: args._id },
-            { pair: { id: doc._id, isAproved: false } },
-            (err, doc) => {
-              console.log(doc);
-            }
-          );
-          return Project.findOne({ _id: args._id }, (err, doc) => {
-            return doc;
-          });
-        });
+        return Project.updateOne({ _id: args._id }, args);
       },
     },
   },
