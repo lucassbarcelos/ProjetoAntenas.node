@@ -25,6 +25,8 @@
 ## How to use queries in GraphQL**
 
 ![GraphQL Docs](http://g.recordit.co/SjDIgyfMrv.gif)
+![GraphQL Docs](http://g.recordit.co/SjDIgyfMrv.gif)
+![GraphQL Docs](http://g.recordit.co/SjDIgyfMrv.gif)
 
 ---
 
