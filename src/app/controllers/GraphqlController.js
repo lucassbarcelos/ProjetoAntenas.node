@@ -4,9 +4,8 @@ const auth = require("../middleware/auth");
 module.exports = (app) =>
   app.use(
     "/graphql",
-    // auth,
     HTTP({
-      schema: require("../services/schemaService.js"),
+      schema: require("../services/SchemaService"),
       graphiql: true,
     })
   );
