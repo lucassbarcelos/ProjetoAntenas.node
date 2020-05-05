@@ -1,65 +1,13 @@
-# Projeto Antenas
+# Padrões de Projetos - 4º semestre de BD
 
-> Project developed to do a interface between companies projects and students at Fatec São José dos Campos.
+Professor: Giuliano Bertoti
 
-> Cool Project to study GraphQL
+Equipe de alunos.
 
-> #GraphQL#Node#mongodb
+- Felipe da Silva Nunes Gomes - 1460281813012
+- Matheus Rocha da Silva - 1460281823034
+- OTHON RAFAEL FERREIRA GODOY - 1460281723035
 
-[![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger) 
-[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org) 
+# 1ª quinzena de maio
 
----
-
-## INDEX
-
-- [GET STARTED](#installation)
-- [Features](#features)
-- [Contributing](#contributing)
-- [License](#license)
-
-
----
-
-
-## How to use queries in GraphQL**
-
-![GraphQL Docs](http://g.recordit.co/SjDIgyfMrv.gif)
-![GraphQL Docs](http://g.recordit.co/SjDIgyfMrv.gif)
-
----
-
-## Installation
- 
-  - To start you need:
-
-####  - Clone
-
-- Clone this repo to your local machine using `https://github.com/lucassbarcelos/ProjetoAntenas.node.git`
-
-####  - Setup
-
-> now install npm after start
-
-```shell
-$ npm install
-$ npm start
-```
----
-
-## Features
-
- - For future students 
----
-
-## Contributing
-
-> all students of the group code notion
-
----
-
-## License
-
-[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
-
-- **[MIT license](http://opensource.org/licenses/mit-license.php)**
+- Pronta refatoração de java para node com graphQL
