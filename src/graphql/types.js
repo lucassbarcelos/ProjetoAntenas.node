@@ -52,8 +52,20 @@ const UserType = new GraphQLObjectType({
     type: { type: GraphQLInt },
     isActive: { type: GraphQLBoolean },
     company: { type: GraphQLString },
-    cpf: { type: GraphQLInt },
+    cnpj: { type: GraphQLInt },
     position: { type: GraphQLInt },
+  },
+});
+
+const MedalType = new GraphQLObjectType({
+  name: "Medal",
+  fields: {
+    _id: { type: GraphQLID },
+    title: { type: GraphQLString },
+    type: { type: GraphQLString },
+    description: { type: GraphQLString },
+    teacher: { type: GraphQLID },
+    student: { type: GraphQLID },
   },
 });
 
@@ -78,7 +90,14 @@ const ProjectType = new GraphQLObjectType({
   },
 });
 
-module.exports = { UserType, ProjectType, StateType, StateInput, ReunionInput };
+module.exports = {
+  UserType,
+  ProjectType,
+  StateType,
+  StateInput,
+  ReunionInput,
+  MedalType,
+};
 
 // const schema = new GraphQLSchema({
 //     query: new GraphQLObjectType({
@@ -104,7 +123,7 @@ module.exports = { UserType, ProjectType, StateType, StateInput, ReunionInput };
 //             type: { type: GraphQLNonNull(GraphQLInt) },
 //             isActive: { type: GraphQLNonNull(GraphQLBoolean) },
 //             company: { type: GraphQLNonNull(GraphQLString) },
-//             cpf: { type: GraphQLNonNull(GraphQLInt) },
+//             cnpj: { type: GraphQLNonNull(GraphQLInt) },
 //             position: { type: GraphQLNonNull(GraphQLInt) },
 //           },
 //           resolve: (root, args, context, info) => {

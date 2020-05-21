@@ -1,7 +1,7 @@
 const mongoose = require("../database/connection");
 
 const MedalSchema = new mongoose.Schema({
-  tecnology: {
+  title: {
     type: String,
     required: true,
   },

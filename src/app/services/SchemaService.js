@@ -12,9 +12,11 @@ const {
   UserType,
   StateInput,
   ReunionInput,
+  MedalType,
 } = require("../../graphql/types");
 const User = require("../../models/user");
 const Project = require("../../models/project");
+const Medal = require("../../models/medal");
 
 const RootQuery = new GraphQLObjectType({
   name: "Querys",
@@ -63,6 +65,12 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(ProjectType),
       resolve(parent, args) {
         return Project.find({});
+      },
+    },
+    medals: {
+      type: new GraphQLList(MedalType),
+      resolve(parent, args) {
+        return Medal.find({});
       },
     },
   },
@@ -140,6 +148,66 @@ const Mutation = new GraphQLObjectType({
         return Project.findOne({ _id: args._id }, (erro, doc) => {
           return doc;
         });
+      },
+    },
+    createMedal: {
+      type: MedalType,
+      args: {
+        title: {
+          type: new GraphQLNonNull(GraphQLString),
+        },
+        type: {
+          type: new GraphQLNonNull(GraphQLString),
+        },
+        description: {
+          type: new GraphQLNonNull(GraphQLString),
+        },
+      },
+      resolve(parent, args) {
+        console.log(args);
+        let medal = new Medal({
+          title: args.title,
+          type: args.type,
+          description: args.description,
+        });
+        try {
+          medal.save();
+          return medal;
+        } catch (error) {
+          return Response.status(400).send({
+            error: "Something Failed" + error,
+          });
+        }
+      },
+    },
+    giveMedal: {
+      type: MedalType,
+      args: {
+        _id: {
+          type: new GraphQLNonNull(GraphQLString),
+        },
+        teacher: {
+          type: new GraphQLNonNull(GraphQLString),
+        },
+        student: {
+          type: new GraphQLNonNull(GraphQLString),
+        },
+      },
+      resolve(parent, args) {
+        console.log(args);
+        let medal = new Medal({
+          title: args.title,
+          type: args.type,
+          description: args.description,
+        });
+        try {
+          medal.save();
+          return medal;
+        } catch (error) {
+          return Response.status(400).send({
+            error: "Something Failed" + error,
+          });
+        }
       },
     },
   },
