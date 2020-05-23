@@ -201,8 +201,16 @@ const Mutation = new GraphQLObjectType({
           description: args.description,
         });
         try {
-          medal.save();
-          return medal;
+          const res = User.updateOne(
+            { _id: medal.student },
+            medal,
+            (err, doc) => {
+              return doc;
+            }
+          );
+          return User.findOne({ _id: medal.student }, (erro, doc) => {
+            return doc;
+          });
         } catch (error) {
           return Response.status(400).send({
             error: "Something Failed" + error,
