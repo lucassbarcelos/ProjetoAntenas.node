@@ -202,24 +202,60 @@ const Mutation = new GraphQLObjectType({
         },
       },
       resolve(parent, args) {
-        console.log(args);
-        let medal = new Medal({
-          title: args.title,
-          type: args.type,
-          description: args.description,
-        });
+        console.log("teste");
+
         try {
-          const res = User.updateOne(
-            { _id: medal.student },
-            medal,
-            (err, doc) => {
-              return doc;
-            }
-          );
-          return User.findOne({ _id: medal.student }, (erro, doc) => {
-            return doc;
+          const { _id, teacher, student } = args;
+          return Medal.findById(_id, (err, doc) => {
+            const { title, type, description } = doc;
+            const newMedal = {
+              _id,
+              title,
+              type,
+              description,
+              teacher,
+              student,
+            };
+            console.log(newMedal);
+            return User.updateOne(
+              { _id: student },
+              {
+                $addToSet: {
+                  medal: newMedal,
+                },
+                $currentDate: { lastModified: true },
+              },
+              (err, doc) => {
+                console.log(doc);
+                return doc;
+              }
+            );
           });
+
+          // let medal = { _id, title, type, description };
+          // return medal;
+          // return User.findOne({ _id: student }, (erro, doc) => {
+          //   return doc;
+          // });
+          // teste.medal = newMedal;
+          // User.updateOne({ _id: student }, teste, (err, doc) => {
+          //   return doc;
+          // });
+          // return User.findOne({ _id: student }, (erro, doc) => {
+          //   return doc;
+          // });
+          // const res = User.updateOne(
+          //   { _id: medal.student },
+          //   medal,
+          //   (err, doc) => {
+          //     return doc;
+          //   }
+          // );
+          // return User.findOne({ _id: medal.student }, (erro, doc) => {
+          //   return doc;
+          // });
         } catch (error) {
+          console.log(error);
           return Response.status(400).send({
             error: "Something Failed" + error,
           });

@@ -42,6 +42,18 @@ const StateInput = new GraphQLInputObjectType({
   }),
 });
 
+const MedalType = new GraphQLObjectType({
+  name: "Medal",
+  fields: {
+    _id: { type: GraphQLID },
+    title: { type: GraphQLString },
+    type: { type: GraphQLString },
+    description: { type: GraphQLString },
+    teacher: { type: GraphQLID },
+    student: { type: GraphQLID },
+  },
+});
+
 const UserType = new GraphQLObjectType({
   name: "User",
   fields: {
@@ -54,18 +66,7 @@ const UserType = new GraphQLObjectType({
     company: { type: GraphQLString },
     cnpj: { type: GraphQLInt },
     position: { type: GraphQLInt },
-  },
-});
-
-const MedalType = new GraphQLObjectType({
-  name: "Medal",
-  fields: {
-    _id: { type: GraphQLID },
-    title: { type: GraphQLString },
-    type: { type: GraphQLString },
-    description: { type: GraphQLString },
-    teacher: { type: GraphQLID },
-    student: { type: GraphQLID },
+    medal: { type: GraphQLList(MedalType) },
   },
 });
 

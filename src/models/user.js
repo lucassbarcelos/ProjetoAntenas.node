@@ -37,6 +37,10 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     required: false,
   },
+  medal: {
+    type: Array,
+    required: false,
+  },
 });
 
 UserSchema.pre("save", async function (next) {
