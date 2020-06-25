@@ -81,6 +81,19 @@ const RootQuery = new GraphQLObjectType({
         return Medal.find({});
       },
     },
+    MedalByUser: {
+      type: GraphQLList(MedalType),
+      args: { _id: { type: GraphQLNonNull(GraphQLString) } },
+      async resolve(parent, args) {
+        let teste = [];
+        await User.findById({ _id: args._id }, (err, doc) => {
+          const { medal } = doc;
+          teste = medal;
+          return medal;
+        });
+        return teste;
+      },
+    },
   },
 });
 
@@ -231,29 +244,6 @@ const Mutation = new GraphQLObjectType({
               }
             );
           });
-
-          // let medal = { _id, title, type, description };
-          // return medal;
-          // return User.findOne({ _id: student }, (erro, doc) => {
-          //   return doc;
-          // });
-          // teste.medal = newMedal;
-          // User.updateOne({ _id: student }, teste, (err, doc) => {
-          //   return doc;
-          // });
-          // return User.findOne({ _id: student }, (erro, doc) => {
-          //   return doc;
-          // });
-          // const res = User.updateOne(
-          //   { _id: medal.student },
-          //   medal,
-          //   (err, doc) => {
-          //     return doc;
-          //   }
-          // );
-          // return User.findOne({ _id: medal.student }, (erro, doc) => {
-          //   return doc;
-          // });
         } catch (error) {
           console.log(error);
           return Response.status(400).send({
