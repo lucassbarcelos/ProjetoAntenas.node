@@ -154,7 +154,7 @@ const Mutation = new GraphQLObjectType({
         linkOne: { type: GraphQLString },
         linkTwo: { type: GraphQLString },
         step: { type: GraphQLString },
-        reunion: { type: GraphQLList(ReunionInput) },
+        reunion: { type: ReunionInput },
         state: { type: GraphQLList(StateInput) },
         delivery: { type: GraphQLList(GraphQLString) },
         students: { type: GraphQLList(GraphQLString) },
@@ -212,6 +212,9 @@ const Mutation = new GraphQLObjectType({
         },
         student: {
           type: new GraphQLNonNull(GraphQLString),
+        },
+        level: {
+          type: new GraphQLNonNull(GraphQLInt),
         },
       },
       resolve(parent, args) {

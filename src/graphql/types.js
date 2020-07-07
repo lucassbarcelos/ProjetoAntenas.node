@@ -20,10 +20,8 @@ const ReunionType = new GraphQLObjectType({
 const ReunionInput = new GraphQLInputObjectType({
   name: "ReunionInput",
   fields: {
-    date: { type: GraphQLString },
-    time: { type: GraphQLString },
     place: { type: GraphQLString },
-    possibleDate: { type: GraphQLList(GraphQLString) },
+    possibleDate: { type: GraphQLString },
   },
 });
 
@@ -51,6 +49,7 @@ const MedalType = new GraphQLObjectType({
     description: { type: GraphQLString },
     teacher: { type: GraphQLID },
     student: { type: GraphQLID },
+    level: { type: GraphQLInt },
   },
 });
 
@@ -81,7 +80,7 @@ const ProjectType = new GraphQLObjectType({
     linkOne: { type: GraphQLString },
     linkTwo: { type: GraphQLString },
     step: { type: GraphQLString },
-    reunion: { type: GraphQLList(ReunionType) },
+    reunion: { type: ReunionType },
     state: { type: GraphQLList(StateType) },
     delivery: { type: GraphQLList(GraphQLString) },
     students: { type: GraphQLList(GraphQLString) },

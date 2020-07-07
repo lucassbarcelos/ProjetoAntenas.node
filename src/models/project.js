@@ -15,10 +15,8 @@ const ProjectSchema = new mongoose.Schema({
   linkTwo: String,
   step: Number,
   reunion: {
-    data: String,
-    time: String,
+    possibleDate: String,
     place: String,
-    possibleDate: Array,
     type: Object,
   },
   state: {
@@ -26,7 +24,7 @@ const ProjectSchema = new mongoose.Schema({
     reason: String,
     type: Object,
   },
-  delivery: Array,
+  delivery: { Array },
   students: Array,
   cadiOwner: String,
   teacherOwner: String,
