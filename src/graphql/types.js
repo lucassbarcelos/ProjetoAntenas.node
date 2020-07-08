@@ -11,10 +11,8 @@ const {
 const ReunionType = new GraphQLObjectType({
   name: "Reunion",
   fields: {
-    date: { type: GraphQLString },
-    time: { type: GraphQLString },
     place: { type: GraphQLString },
-    possibleDate: { type: GraphQLList(GraphQLString) },
+    possibleDate: { type: GraphQLString },
   },
 });
 const ReunionInput = new GraphQLInputObjectType({

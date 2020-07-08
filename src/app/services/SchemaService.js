@@ -164,9 +164,10 @@ const Mutation = new GraphQLObjectType({
       },
       resolve(parent, args) {
         const res = Project.updateOne({ _id: args._id }, args, (err, doc) => {
+          console.log(err);
           return doc;
         });
-        return Project.findOne({ _id: args._id }, (erro, doc) => {
+        return Project.findOne({ _id: args._id }, (err, doc) => {
           return doc;
         });
       },
