@@ -63,7 +63,7 @@ const RootQuery = new GraphQLObjectType({
           case 2:
             return Project.find({ cadiOwner: args.email });
           case 3:
-            return Project.find({ studentOwner: args.email });
+            return Project.find({ students: args.email });
           case 4:
             return Project.find({ teacherOwner: args.email });
         }
