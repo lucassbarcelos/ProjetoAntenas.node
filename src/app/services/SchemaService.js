@@ -63,7 +63,7 @@ const RootQuery = new GraphQLObjectType({
           case 2:
             return Project.find({ cadiOwner: args.email });
           case 3:
-            return Project.find({ studentOwner: args.email });
+            return Project.find({ students: args.email });
           case 4:
             return Project.find({ teacherOwner: args.email });
         }
@@ -164,9 +164,10 @@ const Mutation = new GraphQLObjectType({
       },
       resolve(parent, args) {
         const res = Project.updateOne({ _id: args._id }, args, (err, doc) => {
+          console.log(err);
           return doc;
         });
-        return Project.findOne({ _id: args._id }, (erro, doc) => {
+        return Project.findOne({ _id: args._id }, (err, doc) => {
           return doc;
         });
       },
