@@ -2,11 +2,10 @@
   "name": "projetoantenasnode",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "nodemon -- -r esm -r dotenv/config src/server.js",
-    "start": "node src/server.js"
+    "start": "nodemon -- -r esm -r dotenv/config src/server.js"
   },
   "keywords": [],
   "author": "",
