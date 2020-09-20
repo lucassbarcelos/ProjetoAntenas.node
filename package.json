@@ -2,10 +2,12 @@
   "name": "projetoantenasnode",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "12.x"
+  },
   "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -- -r esm -r dotenv/config src/server.js"
+    "start": "node src/server.js"
   },
   "keywords": [],
   "author": "",
@@ -35,11 +37,6 @@
     "nodemon": "^2.0.2",
     "prettier": "^2.0.5",
     "supertest": "^4.0.2"
-  },
-  "husky": {
-    "hooks": {
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
-    }
   },
   "config": {
     "commitizen": {

@@ -3,6 +3,7 @@ version: "3"
 services:
   mongodb:
     container_name: mongo-antenas
+    restart: always
     image: mongo:4.2.9
     env_file:
       - .env
@@ -20,8 +21,6 @@ services:
 
   app:
     container_name: antenas-app
-    env_file:
-      - .env
     restart: always
     build: .
     volumes:
