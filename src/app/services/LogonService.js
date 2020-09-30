@@ -1,17 +1,21 @@
-// const connection = require("../database/connection");
 const User = require("../../models/user");
-const bcrypt = require("bcryptjs");
+const { compare, crypt } = require("../utils/encypt");
 const generateToken = require("../utils/generateToken");
 
 module.exports = {
   async create(req, res) {
-    const { email } = req.body;
+    const { body } = req;
+    const { email } = body;
 
     try {
       if (await User.findOne({ email })) {
         return res.status(400).send({ error: "User already exists" });
       }
-      const user = await User.create(req.body);
+
+      const hashedPassword = await crypt({ value: body.password });
+      body.password = hashedPassword;
+
+      const user = await User.create(body);
 
       user.password = undefined;
       return res.json({
@@ -19,6 +23,7 @@ module.exports = {
         token: generateToken({ id: user._id }),
       });
     } catch (err) {
+      console.error(err);
       return res.status(400).send({ error: "Registration failed" });
     }
   },
@@ -31,7 +36,12 @@ module.exports = {
 
       if (!user) return res.status(400).send({ error: "User not found" });
 
-      if (!(await bcrypt.compare(password, user.password)))
+      const passwordIsValid = await compare({
+        value: password,
+        hash: user.password,
+      });
+
+      if (!passwordIsValid)
         return res.status(400).send({ error: "Invalid password" });
 
       user.password = undefined;
