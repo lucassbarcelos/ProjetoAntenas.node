@@ -1,18 +1,28 @@
 {
-  "name": "projetoantenasnode",
+  "name": "antenas-back",
   "version": "1.0.0",
   "description": "",
-  "engines": {
-    "node": "12.x"
-  },
   "main": "src/server.js",
-  "scripts": {
-    "start": "node src/server.js"
-  },
-  "keywords": [],
-  "author": "",
   "license": "MIT",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    }
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "start:dev": "nodemon -- -r esm -r dotenv/config src/server.js"
+  },
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "celebrate": "^12.0.1",
@@ -37,10 +47,5 @@
     "nodemon": "^2.0.2",
     "prettier": "^2.0.5",
     "supertest": "^4.0.2"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }
