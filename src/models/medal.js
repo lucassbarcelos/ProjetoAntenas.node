@@ -1,14 +1,14 @@
-const mongoose = require("../database/connection");
+const mongoose = require('../database/connection')
 
 const MedalSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true,
+    required: true
   },
   type: String,
-  description: String,
-});
+  description: String
+})
 
-const Medal = mongoose.model("medal", MedalSchema);
+const Medal = mongoose.model('medal', MedalSchema)
 
-module.exports = Medal;
+module.exports = Medal

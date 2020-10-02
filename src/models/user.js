@@ -1,47 +1,47 @@
-const mongoose = require("../database/connection");
+const mongoose = require('../database/connection')
 
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: true
   },
   email: {
     type: String,
     required: true,
     lowercase: true,
-    unique: true,
+    unique: true
   },
   password: {
     type: String,
     required: true,
-    select: false,
+    select: false
   },
   type: {
     type: Number,
-    required: true,
+    required: true
   },
   isActive: {
     type: Boolean,
-    required: true,
+    required: true
   },
   company: {
     type: String,
-    required: false,
+    required: false
   },
   cnpj: {
     type: Number,
-    required: false,
+    required: false
   },
   position: {
     type: Number,
-    required: false,
+    required: false
   },
   medal: {
     type: Array,
-    required: false,
-  },
-});
+    required: false
+  }
+})
 
-const User = mongoose.model("User", UserSchema);
+const User = mongoose.model('User', UserSchema)
 
-module.exports = User;
+module.exports = User

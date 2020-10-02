@@ -1,11 +1,11 @@
-const HTTP = require("express-graphql");
-const { NODE_ENV } = process.env;
+const HTTP = require('express-graphql')
+const { NODE_ENV } = process.env
 
 module.exports = (app) =>
   app.use(
-    "/graphql",
+    '/graphql',
     HTTP({
-      schema: require("../services/SchemaService"),
-      graphiql: NODE_ENV === "development",
+      schema: require('../services/SchemaService'),
+      graphiql: NODE_ENV === 'development'
     })
-  );
+  )
