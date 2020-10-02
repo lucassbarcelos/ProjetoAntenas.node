@@ -18,7 +18,7 @@
     "node": ">=12"
   },
   "scripts": {
-    "start": "node src/server.js",
+    "start": "NODE_ENV=production node src/server.js",
     "start:dev": "nodemon -- -r esm -r dotenv/config src/server.js"
   },
   "dependencies": {
