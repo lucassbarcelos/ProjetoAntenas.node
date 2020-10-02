@@ -5,41 +5,41 @@ const {
   GraphQLID,
   GraphQLList,
   GraphQLInt,
-  GraphQLInputObjectType,
-} = require("graphql");
+  GraphQLInputObjectType
+} = require('graphql')
 
 const ReunionType = new GraphQLObjectType({
-  name: "Reunion",
+  name: 'Reunion',
   fields: {
     place: { type: GraphQLString },
-    possibleDate: { type: GraphQLString },
-  },
-});
+    possibleDate: { type: GraphQLString }
+  }
+})
 const ReunionInput = new GraphQLInputObjectType({
-  name: "ReunionInput",
+  name: 'ReunionInput',
   fields: {
     place: { type: GraphQLString },
-    possibleDate: { type: GraphQLString },
-  },
-});
+    possibleDate: { type: GraphQLString }
+  }
+})
 
 const StateType = new GraphQLObjectType({
-  name: "State",
+  name: 'State',
   fields: {
     aproved: { type: GraphQLBoolean },
-    reason: { type: GraphQLString },
-  },
-});
+    reason: { type: GraphQLString }
+  }
+})
 const StateInput = new GraphQLInputObjectType({
-  name: "StateInput",
+  name: 'StateInput',
   fields: () => ({
     aproved: { type: GraphQLBoolean },
-    reason: { type: GraphQLString },
-  }),
-});
+    reason: { type: GraphQLString }
+  })
+})
 
 const MedalType = new GraphQLObjectType({
-  name: "Medal",
+  name: 'Medal',
   fields: {
     _id: { type: GraphQLID },
     title: { type: GraphQLString },
@@ -47,12 +47,12 @@ const MedalType = new GraphQLObjectType({
     description: { type: GraphQLString },
     teacher: { type: GraphQLID },
     student: { type: GraphQLID },
-    level: { type: GraphQLInt },
-  },
-});
+    level: { type: GraphQLInt }
+  }
+})
 
 const UserType = new GraphQLObjectType({
-  name: "User",
+  name: 'User',
   fields: {
     _id: { type: GraphQLID },
     name: { type: GraphQLString },
@@ -63,12 +63,12 @@ const UserType = new GraphQLObjectType({
     company: { type: GraphQLString },
     cnpj: { type: GraphQLInt },
     position: { type: GraphQLInt },
-    medal: { type: GraphQLList(MedalType) },
-  },
-});
+    medal: { type: GraphQLList(MedalType) }
+  }
+})
 
 const ProjectType = new GraphQLObjectType({
-  name: "Project",
+  name: 'Project',
   fields: {
     _id: { type: GraphQLID },
     title: { type: GraphQLString },
@@ -84,9 +84,9 @@ const ProjectType = new GraphQLObjectType({
     students: { type: GraphQLList(GraphQLString) },
     cadiOwner: { type: GraphQLString },
     teacherOwner: { type: GraphQLString },
-    productOwner: { type: GraphQLString },
-  },
-});
+    productOwner: { type: GraphQLString }
+  }
+})
 
 module.exports = {
   UserType,
@@ -94,41 +94,5 @@ module.exports = {
   StateType,
   StateInput,
   ReunionInput,
-  MedalType,
-};
-
-// const schema = new GraphQLSchema({
-//     query: new GraphQLObjectType({
-//       name: "Query",
-//       fields: {
-//         user: {
-//           type: GraphQLList(UserType),
-//           resolve: (root, args, context, info) => {
-//             return UserModel.find().exec();
-//           },
-//         },
-//       },
-//     }),
-//     mutation: new GraphQLObjectType({
-//       name: "Mutation",
-//       fields: {
-//         user: {
-//           type: UserType,
-//           args: {
-//             name: { type: GraphQLNonNull(GraphQLString) },
-//             email: { type: GraphQLNonNull(GraphQLString) },
-//             password: { type: GraphQLNonNull(GraphQLString) },
-//             type: { type: GraphQLNonNull(GraphQLInt) },
-//             isActive: { type: GraphQLNonNull(GraphQLBoolean) },
-//             company: { type: GraphQLNonNull(GraphQLString) },
-//             cnpj: { type: GraphQLNonNull(GraphQLInt) },
-//             position: { type: GraphQLNonNull(GraphQLInt) },
-//           },
-//           resolve: (root, args, context, info) => {
-//             var user = new UserModel(args);
-//             return user.save();
-//           },
-//         },
-//       },
-//     }),
-//   });
+  MedalType
+}

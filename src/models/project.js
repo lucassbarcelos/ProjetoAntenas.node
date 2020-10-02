@@ -1,13 +1,13 @@
-const mongoose = require("../database/connection");
+const mongoose = require('../database/connection')
 
 const ProjectSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true,
+    required: true
   },
   quickDescription: {
     type: String,
-    required: true,
+    required: true
   },
   fullDescription: String,
   techDescription: String,
@@ -17,20 +17,20 @@ const ProjectSchema = new mongoose.Schema({
   reunion: {
     possibleDate: String,
     place: String,
-    type: Object,
+    type: Object
   },
   state: {
     aproved: Boolean,
     reason: String,
-    type: Object,
+    type: Object
   },
   delivery: { Array },
   students: Array,
   cadiOwner: String,
   teacherOwner: String,
-  productOwner: String,
-});
+  productOwner: String
+})
 
-const Project = mongoose.model("project", ProjectSchema);
+const Project = mongoose.model('project', ProjectSchema)
 
-module.exports = Project;
+module.exports = Project

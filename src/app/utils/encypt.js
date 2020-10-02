@@ -1,29 +1,29 @@
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcrypt')
 
-const { SALT_ROUNDS } = process.env;
+const { SALT_ROUNDS } = process.env
 
 async function crypt({ value }) {
   try {
-    const rounds = Number(SALT_ROUNDS);
+    const rounds = Number(SALT_ROUNDS)
 
-    const salt = await bcrypt.genSalt(rounds);
+    const salt = await bcrypt.genSalt(rounds)
 
-    const hash = await bcrypt.hash(value, salt);
+    const hash = await bcrypt.hash(value, salt)
 
-    return hash;
+    return hash
   } catch (err) {
-    console.error(err);
-    return err;
+    console.error(err)
+    return err
   }
 }
 
 async function compare({ value, hash }) {
-  comparation = bcrypt.compare(value, hash);
+  const comparation = await bcrypt.compare(value, hash)
 
-  return comparation;
+  return comparation
 }
 
 module.exports = {
   crypt,
-  compare,
-};
+  compare
+}
