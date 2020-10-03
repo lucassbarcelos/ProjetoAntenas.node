@@ -1,7 +1,7 @@
 const userEnum = require('../../userEnum')
 
 const getNameByValue = (value) =>
-  userEnum.find((user) => user.value === value)?.name
+  userEnum.find((user) => user.value === value).name
 
 describe('utils/userEnum -> userEnum', () => {
   it('should contain productOwner, cadiOwner, studentOwner and teacherOwner', () => {
