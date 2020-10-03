@@ -28,5 +28,5 @@ jobs:
     - run: yarn test
     env:
         JWT_SECRET: 8c725f91ac3f9808ff2c0ceb0951c39a
-        JWT_EXPIRATION: 86400
+        JWT_EXPIRATION_TIME: 86400
         SALT_ROUNDS: 8
