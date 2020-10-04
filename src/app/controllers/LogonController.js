@@ -7,4 +7,6 @@ routes.post('/register', LogonService.create)
 
 routes.post('/logon', LogonService.logon)
 
+routes.get('/ping', (req, res) => res.send('pong'))
+
 module.exports = (app) => app.use('/', routes)
