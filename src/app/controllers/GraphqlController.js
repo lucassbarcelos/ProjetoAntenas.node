@@ -3,7 +3,7 @@ const { NODE_ENV } = process.env
 
 module.exports = (app) =>
   app.use(
-    '/graphql',
+    '/api/graphql',
     HTTP({
       schema: require('../services/SchemaService'),
       graphiql: NODE_ENV === 'development'
