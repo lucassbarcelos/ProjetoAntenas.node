@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  mongodb:
+    container_name: antenas-mongo
+    restart: unless-stopped
+    image: mongo:4.2.9
+    env_file:
+      - .env
+    ports:
+      - ${MONGODB_PORT}:27017
+    environment:
+      MONGO_INITDB_MONGODB: ${MONGODB_NAME}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASS}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"

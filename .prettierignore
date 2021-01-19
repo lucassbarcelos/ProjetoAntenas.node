@@ -1,0 +1,6 @@
+coverage/
+node_modules/
+jest.config.js
+docker-compose.yml
+README.md
+yarn.lock

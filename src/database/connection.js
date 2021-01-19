@@ -1,10 +1,11 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
+const { uri, options } = require('../config/mongo')
 
-mongoose.connect("mongodb://127.0.0.1:27017/app", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true
-});
-mongoose.Promise = global.Promise;
+mongoose.connect(uri, { ...options })
+mongoose.Promise = global.Promise
 
-module.exports = mongoose;
+mongoose.connection.on('error', () =>
+  console.error('❌ an error occurred while attempting to connect')
+)
+
+module.exports = mongoose

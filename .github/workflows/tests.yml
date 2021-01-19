@@ -1,0 +1,32 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: "Run tests"
+
+on:
+  push:
+    branches: [ master, stage, develop ]
+  pull_request:
+    branches: [ master, stage, develop ]
+
+jobs:
+  run-tests:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: yarn install --frozen-lockfile
+    - run: yarn test
+    env:
+        JWT_SECRET: ${{ secrets.ENV_JWT_SECRET }}
+        JWT_EXPIRATION_TIME: ${{ secrets.ENV_JWT_EXPIRATION_TIME }}
+        SALT_ROUNDS: ${{ secrets.ENV_SALT_ROUNDS }}

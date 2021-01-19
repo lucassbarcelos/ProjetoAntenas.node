@@ -1,10 +1,12 @@
-const express = require("express");
-const LogonService = require("../services/LogonService");
+const express = require('express')
+const LogonService = require('../services/LogonService')
 
-const routes = express.Router();
+const routes = express.Router()
 
-routes.post("/register", LogonService.create);
+routes.post('/register', LogonService.create)
 
-routes.post("/logon", LogonService.logon);
+routes.post('/logon', LogonService.logon)
 
-module.exports = (app) => app.use("/", routes);
+routes.get('/ping', (req, res) => res.send('pong'))
+
+module.exports = (app) => app.use('/api', routes)
